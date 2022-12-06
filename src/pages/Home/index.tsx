@@ -1,21 +1,15 @@
 import { Grid } from "@mui/material"
-import { useQuery } from "@tanstack/react-query"
-import { BreedsResponse } from "../../types/api"
-import Filters from "../components/Filters"
-
+import Filters from "./components/Filters"
+import ImagesDogList from "./components/ImagesDogList"
 
 const Home = () => {
-  const { data, isSuccess } = useQuery<BreedsResponse>({ queryKey: ['breeds'], queryFn: async () => {
-    const res = await fetch('https://dog.ceo/api/breeds/list/all')
-    return await res.json()
-  }})
-
-  return <Grid container>
-    {
-      data && isSuccess ? <>
-        <Filters breeds={data.message}/>
-      </> : null
-    }
+  return <Grid container spacing={2}>
+    <Grid item xs={12} sm={6} md={4}>
+      <Filters />
+    </Grid>
+    <Grid item xs={12} sm={6} md={8}>
+      <ImagesDogList />
+    </Grid>
   </Grid>
 }
 
