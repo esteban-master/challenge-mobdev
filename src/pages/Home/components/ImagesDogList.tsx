@@ -4,22 +4,25 @@ import { useDogContext } from "../../../context/dogContext";
 
 const ImagesDogList = () => {
   const { breedImages } = useDogContext()
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(0)
 
   return (
-    <Grid container justifyContent="center">
+    <Grid container>
       <Grid item xs={12}>
-        <Typography variant="h4">Imagenes</Typography>
+        <Typography variant="h4">{breedImages.length} imágenes</Typography>
+      </Grid>
+      <Grid item xs={12}>
+        <Typography variant="body1">{`Página ${page + 1}`}</Typography>
       </Grid>
       <Grid item xs={12}>
         <ImageList variant="masonry" cols={2} gap={8}>
           { breedImages
             .slice(page * 10, page * 10 + 10)
-            .map((item) => 
+            .map((item, index) => 
               <ImageListItem key={item.image}>
-                <img src={item.image} alt="" loading="lazy" srcSet={`${item.image}?w=248&fit=crop&auto=format&dpr=2 2x`}/>
+                <img src={item.image} alt={`${item.title} numero ${index}`} loading="lazy" srcSet={`${item.image}?w=248&fit=crop&auto=format&dpr=2 2x`}/>
                 <ImageListItemBar
-                  title={item.title}
+                  title={`Raza: ${item.title}`}
                 />
               </ImageListItem>)}
         </ImageList>

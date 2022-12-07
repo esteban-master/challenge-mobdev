@@ -5,6 +5,8 @@ import { capitalize } from "../utils/capitalize";
 export const getBreedListAll = async () => {
   const { data } = await axios.get<BreedsResponse>('https://dog.ceo/api/breeds/list/all')
   return data
+  // const data = await fetch('https://dog.ceo/api/breeds/list/all')
+  // return await data.json()
 } 
 
 export const getBreedImages = async ({ name, isSubBreed }:{ name: string, isSubBreed?: boolean }) => {
