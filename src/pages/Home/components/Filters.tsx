@@ -1,6 +1,5 @@
 import { Autocomplete, Grid, TextField, Typography } from "@mui/material"
 import { useDogContext } from "../../../context/dogContext"
-import { Breeds } from "../../../types/api"
 import { capitalize } from "../../../utils/capitalize"
 
 const Filters = () => {
