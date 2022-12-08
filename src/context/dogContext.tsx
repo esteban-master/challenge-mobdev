@@ -16,13 +16,17 @@ export const DogContext = createContext<{
   selectedSubBreeds: string[],
   addToSelected: (selected: string[], type: TypeBreed) => void,
   breedList: Breeds,
-  breedImages: { title: string, image: string }[]
+  breedImages: { title: string, image: string }[],
+  page: number,
+  setPage: (value: number) => void
 }>({
   selectedBreeds: [],
   selectedSubBreeds: [],
   addToSelected: () => {},
   breedList: {},
-  breedImages: []
+  breedImages: [],
+  page: 0,
+  setPage: () => {},
 });
 
 type Props = {
@@ -34,7 +38,8 @@ export const DogContextProvider = ({ children }: Props) => {
   const [selectedBreeds, setSelectedBreeds] = useState<string[]>(['bulldog']);
   const [selectedSubBreeds, setSelectedSubBreeds] = useState<string[]>([]);
   const [breedImages, setBreedImages] = useState<{ title: string, image: string }[]>([]);
-  
+  const [page, setPage] = useState(0)
+
   useEffect(() => {
     getBreedListAll().then((res) => {
       setBreedList(res.message)
@@ -47,7 +52,10 @@ export const DogContextProvider = ({ children }: Props) => {
       ...selectedSubBreeds
         .filter((subBreed) => !selectedBreeds.includes(subBreed.split(' ')[1].toLowerCase()))
         .map(item => getBreedImages({ name: item, isSubBreed: true })),
-    ]).then(values => setBreedImages(values.flat()))
+    ]).then(values => {
+      setPage(0)
+      setBreedImages(values.flat())
+    })
   }, [selectedBreeds.length, selectedSubBreeds.length]) 
 
   const addToSelected = useCallback((selected: string[], type: TypeBreed) => {
@@ -59,7 +67,7 @@ export const DogContextProvider = ({ children }: Props) => {
   } ,[])
   
   return <DogContext.Provider value={{
-    selectedBreeds, addToSelected, selectedSubBreeds, breedList, breedImages
+    selectedBreeds, addToSelected, selectedSubBreeds, breedList, breedImages, page, setPage
   }}>
     {children}
   </DogContext.Provider>

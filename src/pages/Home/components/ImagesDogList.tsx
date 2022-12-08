@@ -3,8 +3,7 @@ import {  useState } from "react"
 import { useDogContext } from "../../../context/dogContext";
 
 const ImagesDogList = () => {
-  const { breedImages } = useDogContext()
-  const [page, setPage] = useState(0)
+  const { breedImages, page, setPage } = useDogContext()
 
   return (
     <Grid container>
