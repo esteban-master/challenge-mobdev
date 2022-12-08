@@ -11,9 +11,12 @@ const ImagesDogList = () => {
         <Grid item xs={12}>
           <Typography variant="h4" sx={{ fontWeight: 'bold' }}>{breedImages.length} imágenes</Typography>
         </Grid>
-        <Grid item xs={12}>
-          <Typography variant="body1">{`Página ${page + 1}`}</Typography>
-        </Grid>
+        {
+          breedImages.length ?
+            <Grid item xs={12}>
+              <Typography variant="body1">{`Página ${page + 1}`}</Typography>
+            </Grid> : null
+        }
         <Grid item xs={12}>
           <ImageList variant="masonry" cols={2} gap={8}>
             { breedImages
