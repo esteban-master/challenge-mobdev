@@ -3,7 +3,7 @@ import Filters from "./components/Filters"
 import ImagesDogList from "./components/ImagesDogList"
 
 const Home = () => {
-  return <Grid container spacing={2}>
+  return <Grid container spacing={2} paddingY={2}>
     <Grid item xs={12} sm={6} md={4}>
       <Filters />
     </Grid>

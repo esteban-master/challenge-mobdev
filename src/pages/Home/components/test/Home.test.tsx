@@ -1,9 +1,9 @@
 import { describe, test, expect } from 'vitest'
 import { render, screen, waitFor, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event';
-import Home from '.';
-import { DogContextProvider } from '../../context/dogContext';
-import { data } from '../../mocks/data';
+import Home from '../..';
+import { DogContextProvider } from '../../../../context/dogContext';
+import { data } from '../../../../mocks/data';
 
 describe('Home test', () => {
   test('Render Home', async () => {
