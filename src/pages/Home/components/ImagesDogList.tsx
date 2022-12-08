@@ -32,10 +32,16 @@ const ImagesDogList = () => {
         </Grid>
         {
           breedImages.length ? <Grid item xs={12}>
-            <Pagination style={{
-              display: 'flex',
-              justifyContent: 'center'
-            }} count={Math.ceil(breedImages.length / 10)} color="primary" onChange={(_, value: number) => setPage(value - 1)}/>
+            <Pagination 
+              page={page + 1}
+              style={{
+                display: 'flex',
+                justifyContent: 'center'
+              }} 
+              count={Math.ceil(breedImages.length / 10)} 
+              color="primary" 
+              onChange={(_, value: number) => setPage(value - 1)}
+            />
             
           </Grid> : null
         }
